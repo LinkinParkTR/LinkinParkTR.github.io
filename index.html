@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>LINKIN PARK | Music Experience</title>
+
+<style>
+:root {
+    --red: #ff202e;
+    --dark: #070707;
+    --panel: rgba(18, 18, 18, .88);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    color: #f5f5f5;
+    background: var(--dark);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: -2;
+    background:
+        radial-gradient(circle at 25% 25%, #5c000a 0, transparent 28%),
+        radial-gradient(circle at 75% 65%, #350008 0, transparent 30%),
+        radial-gradient(circle at 50% 50%, #191919 0, transparent 50%);
+    animation: backgroundMove 14s ease-in-out infinite alternate;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .12;
+    background-image: radial-gradient(#ff3333 1px, transparent 1px);
+    background-size: 35px 35px;
+    animation: stars 18s linear infinite;
+}
+
+@keyframes backgroundMove {
+    from { transform: translate(-2%, -1%) rotate(0deg); }
+    to { transform: translate(2%, 2%) rotate(7deg); }
+}
+
+@keyframes stars {
+    from { background-position: 0 0; }
+    to { background-position: 180px 280px; }
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 6%;
+    border-bottom: 1px solid #471016;
+    background: rgba(0, 0, 0, .72);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(14px);
+}
+
+.brand {
+    color: white;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.brand span { color: var(--red); }
+
+nav {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 13px;
+    transition: .25s;
+}
+
+nav a:hover {
+    color: var(--red);
+    text-shadow: 0 0 12px var(--red);
+}
+
+.hero {
+    min-height: 340px;
+    padding: 75px 20px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 55%;
+    width: min(23vw, 260px);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+    box-shadow: 0 0 20px var(--red);
+    animation: pulse 2s infinite alternate;
+}
+
+.hero::before { left: 3%; }
+.hero::after { right: 3%; }
+
+@keyframes pulse {
+    from { opacity: .25; transform: scaleX(.6); }
+    to { opacity: 1; transform: scaleX(1); }
+}
+
+.emblem {
+    color: var(--red);
+    font-size: 55px;
+    text-shadow: 0 0 20px #ff0015;
+    animation: emblemGlow 2s infinite alternate;
+}
+
+@keyframes emblemGlow {
+    from { text-shadow: 0 0 8px #ff0015; }
+    to { text-shadow: 0 0 35px #ff0015, 0 0 65px #800000; }
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: clamp(42px, 9vw, 90px);
+    font-weight: 1000;
+    font-style: italic;
+    letter-spacing: -3px;
+    text-shadow: 0 0 25px #ff001533;
+    animation: titleIn 1s ease both;
+}
+
+h1 span { color: var(--red); }
+
+@keyframes titleIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tagline {
+    color: #aaa;
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+.tagline span { color: var(--red); }
+
+.layout {
+    width: min(1100px, 92%);
+    margin: 0 auto 70px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 22px;
+    align-items: start;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid #a20c19;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 0 25px #ff00130d;
+    transition: box-shadow .3s, transform .3s;
+    animation: panelIn .8s ease both;
+}
+
+.panel:hover {
+    box-shadow: 0 0 30px #ff202e24;
+}
+
+@keyframes panelIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+    font-size: 13px;
+    color: var(--red);
+    letter-spacing: 2px;
+    margin: 0 0 16px;
+}
+
+.spotify-frame {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #111;
+}
+
+.spotify-frame iframe {
+    display: block;
+    width: 100%;
+    height: 352px;
+    border: 0;
+}
+
+.spotify-button {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border: 1px solid var(--red);
+    border-radius: 999px;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: background .2s, box-shadow .2s;
+}
+
+.spotify-button:hover {
+    background: #ff202e22;
+    box-shadow: 0 0 18px #ff202e44;
+}
+
+.hint {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #999;
+    margin: 14px 0 0;
+}
+
+.track-list { margin-top: 22px; }
+
+.track {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 10px;
+    border-bottom: 1px solid #ffffff0d;
+    color: #ddd;
+    transition: .2s;
+}
+
+.track:hover {
+    background: #ff202e14;
+    padding-left: 16px;
+    color: white;
+}
+
+.track .number {
+    color: var(--red);
+    width: 20px;
+}
+
+.track small {
+    display: block;
+    color: #888;
+    margin-top: 4px;
+}
+
+.track-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color .2s, text-shadow .2s;
+}
+
+.track-link:hover {
+    color: var(--red);
+    text-shadow: 0 0 10px #ff202e88;
+}
+
+.side-panel { margin-bottom: 20px; }
+
+.quote {
+    color: #ddd;
+    font-size: 19px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.quote span { color: var(--red); }
+
+.equalizer {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 12px 0 22px;
+}
+
+.equalizer i {
+    display: block;
+    width: 5px;
+    height: 12px;
+    border-radius: 5px;
+    background: var(--red);
+    box-shadow: 0 0 10px #ff202e88;
+    animation: equalize .65s ease-in-out infinite alternate;
+}
+
+.equalizer i:nth-child(2n) { animation-delay: -.4s; }
+.equalizer i:nth-child(3n) { animation-delay: -.2s; }
+.equalizer i:nth-child(4n) { animation-delay: -.55s; }
+
+@keyframes equalize {
+    from { height: 8px; }
+    to { height: 48px; }
+}
+
+footer {
+    border-top: 1px solid #3a1014;
+    padding: 25px;
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+footer span { color: var(--red); }
+
+@media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        padding: 17px 12px;
+    }
+
+    nav { justify-content: center; gap: 14px; }
+    .layout { grid-template-columns: 1fr; }
+    .hero { padding-top: 55px; }
+    .hero::before, .hero::after { width: 10%; }
+    .tagline { letter-spacing: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <div class="brand">LINKIN <span>PARK</span></div>
+    <nav>
+        <a href="#home">ANA SAYFA</a>
+        <a href="#music">MÜZİK</a>
+        <a href="#songs">ŞARKILAR</a>
+        <a href="#about">HAKKINDA</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="emblem">◉</div>
+    <h1>LINKIN <span>PARK</span></h1>
+    <div class="tagline">ONE BAND <span> / </span> ONE SOUND <span> / </span> ONE FAMILY</div>
+
+    <div class="equalizer" aria-label="Hareketli ses dalgası">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+</section>
+
+<main class="layout">
+    <section class="panel" id="music">
+        <h2 class="section-title">♫ SPOTIFY PLAYER</h2>
+
+        <div class="spotify-frame">
+            <iframe
+                title="Linkin Park Spotify oynatıcı"
+                src="https://open.spotify.com/embed/artist/6XyY86QOPPrYVGvF9ch6wz?utm_source=generator&amp;theme=0"
+                width="100%"
+                height="352"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="eager"
+                referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+        </div>
+
+        <p class="hint">
+            Şarkıları Spotify oynatıcısından seçip başlat.
+            Oynatma ve hesap özellikleri Spotify'ın kurallarına bağlıdır.
+        </p>
+
+        <a class="spotify-button"
+           href="https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
+           target="_blank" rel="noopener noreferrer">SPOTIFY'DA AÇ ↗</a>
+
+        <div class="track-list" id="songs">
+            <h2 class="section-title">EN SEVİLEN ŞARKILAR</h2>
+
+            <div class="track">
+                <span class="number">01</span>
+                <div>
+                    <a class="track-link" href="https://open.spotify.com/search/Linkin%20Park%20Numb" target="_blank" rel="noopener noreferrer">Numb</a>
+                    <small>Linkin Park</small>
+                </div>
+            </div>
+
+            <div class="track">
+                <span class="number">02</span>
+                <div>
+                    <a class="track-link" href="https://open.spotify.com/search/Linkin%20Park%20In%20the%20End" target="_blank" rel="noopener noreferrer">In the End</a>
+                    <small>Linkin Park</small>
+                </div>
+            </div>
+
+            <div class="track">
+                <span class="number">03</span>
+                <div>
+                    <a class="track-link" href="https://open.spotify.com/search/Linkin%20Park%20What%20I%27ve%20Done" target="_blank" rel="noopener noreferrer">What I've Done</a>
+                    <small>Linkin Park</small>
+                </div>
+            </div>
+
+            <div class="track">
+                <span class="number">04</span>
+                <div>
+                    <a class="track-link" href="https://open.spotify.com/search/Linkin%20Park%20Faint" target="_blank" rel="noopener noreferrer">Faint</a>
+                    <small>Linkin Park</small>
+                </div>
+            </div>
+
+            <div class="track">
+                <span class="number">05</span>
+                <div>
+                    <a class="track-link" href="https://open.spotify.com/search/Linkin%20Park%20Breaking%20the%20Habit" target="_blank" rel="noopener noreferrer">Breaking the Habit</a>
+                    <small>Linkin Park</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside>
+        <section class="panel side-panel">
+            <h2 class="section-title">✦ ROCK RUHU</h2>
+            <p class="quote">
+                “Müzik sadece ses değil,
+                <span>bir yaşam biçimi.</span>”
+            </p>
+
+            <div class="equalizer">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+        </section>
+
+        <section class="panel side-panel" id="about">
+            <h2 class="section-title">LINKIN PARK</h2>
+            <p class="hint">
+                Alternatif rock, nu metal ve elektronik seslerin
+                buluştuğu müzik dünyası.
+            </p>
+            <p class="quote"><span>∞</span> MUSIC NEVER DIES</p>
+        </section>
+    </aside>
+</main>
+
+<footer>
+    LINKIN PARK <span>•</span> FOREVER
+</footer>
+</body>
+</html>

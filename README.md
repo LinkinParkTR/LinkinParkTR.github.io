@@ -1,2 +1,2 @@
-# kokh4230-crypto.github.io
+# LinkinParkTR.github.io
 Linkin Park Hayran Sitesi Müzikler ve Şarkılar.

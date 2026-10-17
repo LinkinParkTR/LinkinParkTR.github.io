@@ -398,24 +398,29 @@ footer span { color: var(--red); }
   animation: yanIsik 2s ease-in-out infinite alternate;
 }
 
-.yan-kapak img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 25px red;
+
+.yan-kapak {
+  position: fixed !important;
+  top: 120px !important;
+  width: 22%;
+  max-width: 300px;
+  transform: none !important;
+  z-index: 9999;
+  animation: yanIsik 2s ease-in-out infinite alternate;
 }
 
 .sol {
-    position fixed;
-  left: 1%;
-  top: 50%;
+  position: fixed !important;
+  left: 1% !important;
+  right: auto !important;
 }
 
 .sag {
-    position fixed;
-  right: 1%;
- top: 50%;
+  position: fixed !important;
+  right: 1% !important;
+  left: auto !important;
 }
+
 
 @keyframes yanIsik {
   from {

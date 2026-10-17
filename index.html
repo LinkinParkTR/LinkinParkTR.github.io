@@ -361,6 +361,19 @@ footer span { color: var(--red); }
   height: auto;
   margin: 20px auto;
   border-radius: 12px;
+  animation: kapakHareket 5s ease-in-out infinite alternate;
+  box-shadow: 0 0 20px rgba(255, 0, 35, 0.35);
+}
+
+@keyframes kapakHareket {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 0, 35, 0.3);
+  }
+  100% {
+    transform: scale(1.025);
+    box-shadow: 0 0 35px rgba(255, 0, 35, 0.8);
+  }
 }
 </style>
 </head>

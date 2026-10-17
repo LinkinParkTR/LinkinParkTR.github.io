@@ -379,10 +379,77 @@ footer span { color: var(--red); }
   }
 }
 
+.ana-icerik {
+  position: relative;
+  z-index: 2;
+  width: 70%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.yan-kapak {
+  position: fixed;
+  top: 50%;
+  width: 13%;
+  max-width: 190px;
+  transform: translateY(-50%);
+  z-index: 1;
+  animation: yanIsik 2s ease-in-out infinite alternate;
+}
+
+.yan-kapak img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 25px red;
+}
+
+.sol {
+  left: 1%;
+}
+
+.sag {
+  right: 1%;
+}
+
+@keyframes yanIsik {
+  from {
+    filter: brightness(0.7);
+    box-shadow: 0 0 10px red;
+  }
+  to {
+    filter: brightness(1.3);
+    box-shadow: 0 0 35px red;
+  }
+}
+
+@media (max-width: 700px) {
+  .yan-kapak {
+    display: none;
+  }
+
+  .ana-icerik {
+    width: 95%;
+  }
+}
+
 </style>
 </head>
 
 <body>
+    
+<div class="yan-kapak sol">
+  <img src="kapak.png.png" alt="Linkin Park sol kapak">
+</div>
+
+<div class="yan-kapak sag">
+  <img src="kapak.png.png" alt="Linkin Park sağ kapak">
+</div>
+
+<div class="ana-icerik">
+  <!-- Sitenin mevcut içerikleri burada kalacak -->
+</div>
+
 <header>
     <div class="brand">LINKIN <span>PARK</span></div>
     <nav>
